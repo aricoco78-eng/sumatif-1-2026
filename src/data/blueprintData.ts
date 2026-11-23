@@ -2,8 +2,7 @@ import { Question, QuestionBlueprint, CognitiveLevel, Difficulty } from '../type
 
 /**
  * Data Acuan Matriks Kisi-Kisi Penulisan Soal Tes Sumatif
- * Kurikulum Merdeka - Fase C (Kelas 6) Mata Pelajaran Matematika
- * Lingkup Materi: Pecahan dan Desimal (Perkalian Pecahan, Pembagian Pecahan, dan Bilangan Desimal)
+ * Kurikulum Merdeka - Fase C (Kelas 6) Mata Pelajaran Pendidikan Pancasila
  */
 
 export interface BlueprintDefinition {
@@ -14,276 +13,366 @@ export interface BlueprintDefinition {
   bobotSkor: number;
 }
 
-// Peta acuan default 30 butir soal Pecahan dan Desimal (25 PG, 2 PGK, 3 PGK Kategori)
+// Peta acuan default 40 butir soal Pendidikan Pancasila (30 PG, 5 PGK, 5 PGK Kategori)
 export const DEFAULT_BLUEPRINT_MAP: Record<number, BlueprintDefinition> = {
   1: {
-    elemen: 'Bilangan',
+    elemen: 'Pancasila',
     tujuanPembelajaran:
-      'Peserta didik dapat menyelesaikan operasi perkalian bilangan asli dengan pecahan biasa dalam konteks sehari-hari.',
+      'Peserta didik memahami hubungan antarsila Pancasila sebagai satu kesatuan nilai yang utuh dalam kehidupan sehari-hari.',
     indikatorSoal:
-      'Disajikan narasi pembuatan kue yang memerlukan pecahan kg tepung terigu per loyang, peserta didik dapat menentukan total kebutuhan tepung untuk sejumlah loyang.',
+      'Disajikan narasi keterkaitan sila pertama dan sila kedua, peserta didik dapat menentukan contoh sikap saling menghormati teman berbeda agama di sekolah.',
     levelKognitif: 'L1',
     bobotSkor: 1,
   },
   2: {
-    elemen: 'Bilangan',
+    elemen: 'Pancasila',
     tujuanPembelajaran:
-      'Peserta didik dapat menghitung hasil perkalian pecahan biasa dengan bilangan asli secara tepat.',
+      'Peserta didik membiasakan pengamalan nilai-nilai Pancasila dengan menyenangkan di lingkungan sekolah.',
     indikatorSoal:
-      'Disajikan operasi perkalian pecahan biasa dengan bilangan asli, peserta didik dapat menentukan hasil perhitungannya.',
+      'Disajikan gambar realistis siswa berdoa dengan khidmat di kelas sebelum belajar, peserta didik dapat mengidentifikasi sila Pancasila yang diamalkan.',
     levelKognitif: 'L1',
     bobotSkor: 1,
   },
   3: {
-    elemen: 'Bilangan',
+    elemen: 'Pancasila',
     tujuanPembelajaran:
-      'Peserta didik dapat menginterpretasikan representasi visual pecahan dan menyelesaikan perkalian bilangan asli dengan pecahan.',
+      'Peserta didik menganalisis hubungan nilai-nilai Pancasila dalam praktik tolong-menolong dan keadilan sosial.',
     indikatorSoal:
-      'Disajikan gambar realitas potongan pizza yang merepresentasikan pecahan 3/4 bagian, peserta didik dapat menghitung total pizza dari beberapa loyang dengan sisa bagian serupa.',
+      'Disajikan cerita kegiatan penggalangan dan penyaluran bantuan korban banjir secara merata, peserta didik dapat menentukan sila-sila Pancasila yang saling berhubungan.',
     levelKognitif: 'L2',
     bobotSkor: 1,
   },
   4: {
-    elemen: 'Bilangan',
+    elemen: 'Pancasila',
     tujuanPembelajaran:
-      'Peserta didik dapat melakukan perkalian dua pecahan biasa dan menyederhanakan hasilnya.',
+      'Peserta didik menerapkan nilai kemanusiaan yang adil dan beradab dalam pergaulan sehari-hari di sekolah.',
     indikatorSoal:
-      'Disajikan operasi perkalian dua pecahan biasa, peserta didik dapat menentukan hasil perkalian dalam bentuk pecahan paling sederhana.',
+      'Disajikan situasi teman yang terjatuh dan terluka di halaman sekolah, peserta didik dapat menentukan tindakan pengamalan sila kedua Pancasila yang tepat.',
     levelKognitif: 'L1',
     bobotSkor: 1,
   },
   5: {
-    elemen: 'Bilangan',
+    elemen: 'Bhinneka Tunggal Ika',
     tujuanPembelajaran:
-      'Peserta didik dapat menyelesaikan masalah kontekstual perkalian pecahan biasa dengan pecahan campuran.',
+      'Peserta didik menjaga persatuan dan kesatuan di tengah keberagaman suku dan budaya bangsa.',
     indikatorSoal:
-      'Disajikan luas kebun dalam bentuk pecahan campuran dan bagian pecahan yang ditanami padi, peserta didik dapat menghitung luas lahan yang ditanami padi.',
+      'Disajikan kondisi kelas yang memiliki beragam suku dan budaya, peserta didik dapat memilih sikap yang mendukung persatuan Indonesia.',
     levelKognitif: 'L2',
     bobotSkor: 1,
   },
   6: {
-    elemen: 'Bilangan',
+    elemen: 'Pancasila',
     tujuanPembelajaran:
-      'Peserta didik dapat menyelesaikan masalah perkalian bilangan asli dengan pecahan campuran.',
+      'Peserta didik mengidentifikasi bentuk pengamalan sila kelima Pancasila dalam kegiatan sehari-hari.',
     indikatorSoal:
-      'Disajikan kebutuhan pakan ternak harian dalam pecahan campuran, peserta didik dapat menentukan total kebutuhan pakan selama beberapa hari.',
-    levelKognitif: 'L2',
-    bobotSkor: 1,
-  },
-  7: {
-    elemen: 'Bilangan',
-    tujuanPembelajaran:
-      'Peserta didik dapat menerapkan perkalian dua pecahan campuran untuk menghitung luas bangun datar.',
-    indikatorSoal:
-      'Disajikan ukuran panjang dan lebar taman berbentuk persegi panjang dalam pecahan campuran, peserta didik dapat menghitung luas taman tersebut.',
-    levelKognitif: 'L3',
-    bobotSkor: 1,
-  },
-  8: {
-    elemen: 'Bilangan',
-    tujuanPembelajaran:
-      'Peserta didik dapat menganalisis masalah multi-langkah yang melibatkan perkalian pecahan terhadap sisa kuantitas.',
-    indikatorSoal:
-      'Disajikan jumlah uang tabungan dan dua tahap penggunaan dalam bentuk pecahan dari total dan sisa, peserta didik dapat menentukan harga barang yang dibeli.',
-    levelKognitif: 'L3',
-    bobotSkor: 1,
-  },
-  9: {
-    elemen: 'Bilangan',
-    tujuanPembelajaran:
-      'Peserta didik dapat menyelesaikan masalah perkalian bilangan asli dengan pecahan biasa pada satuan volume.',
-    indikatorSoal:
-      'Disajikan jumlah gelas jus dan kapasitas pecahan liter tiap gelas, peserta didik dapat menghitung total volume jus dalam pecahan campuran.',
-    levelKognitif: 'L2',
-    bobotSkor: 1,
-  },
-  10: {
-    elemen: 'Bilangan',
-    tujuanPembelajaran:
-      'Peserta didik dapat menghitung hasil pembagian bilangan asli dengan pecahan biasa.',
-    indikatorSoal:
-      'Disajikan operasi pembagian bilangan asli dengan pecahan biasa, peserta didik dapat menentukan hasil pembagiannya secara tepat.',
+      'Disajikan tiga perilaku hidup hemat, menghargai karya teman, dan adil membagi tugas, peserta didik dapat menentukan sila Pancasila yang sesuai.',
     levelKognitif: 'L1',
     bobotSkor: 1,
   },
-  11: {
-    elemen: 'Bilangan',
+  7: {
+    elemen: 'Pancasila',
     tujuanPembelajaran:
-      'Peserta didik dapat menyelesaikan masalah pembagian pecahan campuran dengan pecahan biasa melalui konteks gambar realitas.',
+      'Peserta didik memahami kedudukan Pancasila sebagai pandangan hidup bangsa Indonesia.',
     indikatorSoal:
-      'Disajikan gambar gulungan pita prakarya dan panjang total pita dalam pecahan campuran, peserta didik dapat menentukan banyak potongan pita dengan ukuran pecahan tertentu.',
+      'Peserta didik dapat menjelaskan makna Pancasila sebagai pandangan hidup bangsa Indonesia secara tepat.',
+    levelKognitif: 'L1',
+    bobotSkor: 1,
+  },
+  8: {
+    elemen: 'Pancasila',
+    tujuanPembelajaran:
+      'Peserta didik menganalisis manfaat pengamalan Pancasila bagi terwujudnya kebahagiaan bersama.',
+    indikatorSoal:
+      'Disajikan pertanyaan tentang tujuan pengamalan Pancasila, peserta didik dapat menentukan alasan Pancasila menciptakan kebahagiaan bersama.',
+    levelKognitif: 'L2',
+    bobotSkor: 1,
+  },
+  9: {
+    elemen: 'Negara Kesatuan Republik Indonesia',
+    tujuanPembelajaran:
+      'Peserta didik mempraktikkan budaya gotong royong untuk kebersamaan dan kebahagiaan di lingkungan sekolah.',
+    indikatorSoal:
+      'Disajikan gambar realistis siswa bergotong royong membersihkan taman sekolah, peserta didik dapat menentukan manfaat utama budaya gotong royong.',
+    levelKognitif: 'L1',
+    bobotSkor: 1,
+  },
+  10: {
+    elemen: 'Pancasila',
+    tujuanPembelajaran:
+      'Peserta didik mampu mengajak teman mengamalkan Pancasila melalui keteladanan dan komunikasi yang santun.',
+    indikatorSoal:
+      'Disajikan kasus teman yang membuang sampah sembarangan di selokan, peserta didik dapat memilih cara bijak mengajak teman menjaga kebersihan.',
+    levelKognitif: 'L2',
+    bobotSkor: 1,
+  },
+  11: {
+    elemen: 'Pancasila',
+    tujuanPembelajaran:
+      'Peserta didik menunjukkan sikap persuasif dan sukarela saat mengajak teman berbuat kebaikan sesuai Pancasila.',
+    indikatorSoal:
+      'Disajikan rencana penggalangan dana sukarela untuk teman yang sakit, peserta didik dapat menentukan sikap ajakan yang tepat dan tidak memaksa.',
     levelKognitif: 'L2',
     bobotSkor: 1,
   },
   12: {
-    elemen: 'Bilangan',
+    elemen: 'Negara Kesatuan Republik Indonesia',
     tujuanPembelajaran:
-      'Peserta didik dapat menyelesaikan masalah pembagian pecahan biasa dengan bilangan asli.',
+      'Peserta didik membiasakan cinta tanah air dan produk dalam negeri sebagai pengamalan Pancasila.',
     indikatorSoal:
-      'Disajikan volume sirup dalam pecahan biasa yang dituang rata ke sejumlah gelas, peserta didik dapat menentukan volume sirup di tiap gelas.',
-    levelKognitif: 'L1',
+      'Disajikan sikap bangga menggunakan kerajinan lokal Indonesia, peserta didik dapat menentukan alasan perilaku tersebut mencerminkan Pancasila.',
+    levelKognitif: 'L2',
     bobotSkor: 1,
   },
   13: {
-    elemen: 'Bilangan',
+    elemen: 'Undang-Undang Dasar Negara Republik Indonesia Tahun 1945',
     tujuanPembelajaran:
-      'Peserta didik dapat menghitung pembagian pecahan biasa dengan pecahan biasa dan menyederhanakan hasilnya.',
+      'Peserta didik memahami pengertian norma sebagai pedoman hidup bermasyarakat.',
     indikatorSoal:
-      'Disajikan operasi pembagian dua pecahan biasa, peserta didik dapat menentukan hasil dalam bentuk pecahan campuran paling sederhana.',
+      'Disajikan definisi aturan berisi perintah dan larangan untuk ketertiban masyarakat, peserta didik dapat menyebutkan istilah yang tepat.',
     levelKognitif: 'L1',
     bobotSkor: 1,
   },
   14: {
-    elemen: 'Bilangan',
+    elemen: 'Undang-Undang Dasar Negara Republik Indonesia Tahun 1945',
     tujuanPembelajaran:
-      'Peserta didik dapat memecahkan masalah pembagian pecahan campuran dengan pecahan satuan berbasis gambar realitas.',
+      'Peserta didik membedakan macam-macam norma beserta sumber dan sanksinya.',
     indikatorSoal:
-      'Disajikan gambar gelas ukur berisi minyak goreng dan botol kecil, peserta didik dapat menghitung jumlah botol yang dibutuhkan untuk menampung seluruh minyak.',
-    levelKognitif: 'L2',
+      'Disajikan ciri norma yang bersumber dari hati nurani dengan sanksi rasa bersalah, peserta didik dapat mengidentifikasi norma kesusilaan.',
+    levelKognitif: 'L1',
     bobotSkor: 1,
   },
   15: {
-    elemen: 'Bilangan',
+    elemen: 'Undang-Undang Dasar Negara Republik Indonesia Tahun 1945',
     tujuanPembelajaran:
-      'Peserta didik dapat menyelesaikan masalah pembagian pecahan campuran dengan pecahan campuran.',
+      'Peserta didik menerapkan norma kesopanan dalam interaksi di lingkungan sekolah.',
     indikatorSoal:
-      'Disajikan berat total panen buah dan kapasitas tiap kemasan dalam pecahan campuran, peserta didik dapat menentukan banyak kemasan yang dibutuhkan.',
+      'Disajikan perilaku siswa yang tersenyum, menunduk, dan menyapa guru di koridor, peserta didik dapat menentukan jenis norma yang diterapkan.',
     levelKognitif: 'L2',
     bobotSkor: 1,
   },
   16: {
-    elemen: 'Bilangan',
+    elemen: 'Undang-Undang Dasar Negara Republik Indonesia Tahun 1945',
     tujuanPembelajaran:
-      'Peserta didik dapat menghitung pembagian pecahan campuran dengan bilangan asli pada satuan panjang.',
+      'Peserta didik menaati norma hukum dalam kehidupan berbangsa dan bernegara demi keselamatan bersama.',
     indikatorSoal:
-      'Disajikan panjang kawat dalam pecahan campuran yang dipotong menjadi beberapa bagian sama panjang, peserta didik dapat menentukan panjang tiap potongan.',
-    levelKognitif: 'L2',
+      'Disajikan gambar realistis siswa menyeberang melalui zebra cross dengan tertib, peserta didik dapat mengidentifikasi jenis norma dan tujuannya.',
+    levelKognitif: 'L1',
     bobotSkor: 1,
   },
   17: {
-    elemen: 'Bilangan',
+    elemen: 'Undang-Undang Dasar Negara Republik Indonesia Tahun 1945',
     tujuanPembelajaran:
-      'Peserta didik dapat menganalisis masalah pembagian pecahan campuran dengan pecahan biasa terkait jarak dan waktu.',
+      'Peserta didik menganalisis ciri khas norma hukum dibandingkan norma lainnya.',
     indikatorSoal:
-      'Disajikan jarak tempuh dalam pecahan campuran dan waktu tempuh pecahan jam, peserta didik dapat menentukan jarak tempuh dalam 1 jam.',
-    levelKognitif: 'L3',
+      'Peserta didik dapat membedakan sifat tertulis, lembaga pembuat, dan sanksi tegas pada norma hukum.',
+    levelKognitif: 'L2',
     bobotSkor: 1,
   },
   18: {
-    elemen: 'Bilangan',
+    elemen: 'Undang-Undang Dasar Negara Republik Indonesia Tahun 1945',
     tujuanPembelajaran:
-      'Peserta didik dapat mengubah bentuk pecahan biasa menjadi bilangan desimal secara akurat.',
+      'Peserta didik memahami pengertian hak dan kewajiban secara tepat.',
     indikatorSoal:
-      'Disajikan sebuah pecahan biasa berpenyebut 8, peserta didik dapat menentukan bentuk bilangan desimalnya.',
+      'Disajikan definisi sesuatu yang harus dilaksanakan penuh tanggung jawab, peserta didik dapat menentukan istilah kewajiban.',
     levelKognitif: 'L1',
     bobotSkor: 1,
   },
   19: {
-    elemen: 'Bilangan',
+    elemen: 'Undang-Undang Dasar Negara Republik Indonesia Tahun 1945',
     tujuanPembelajaran:
-      'Peserta didik dapat mengubah bilangan desimal menjadi bentuk pecahan biasa paling sederhana.',
+      'Peserta didik memahami prinsip keseimbangan antara pelaksanaan kewajiban dan pemenuhan hak.',
     indikatorSoal:
-      'Disajikan bilangan desimal dua angka di belakang koma, peserta didik dapat menyatakan bilangan tersebut dalam bentuk pecahan biasa paling sederhana.',
-    levelKognitif: 'L1',
+      'Peserta didik dapat menentukan hubungan yang tepat antara mendahulukan kewajiban dan menuntut hak dalam kehidupan bernegara.',
+    levelKognitif: 'L2',
     bobotSkor: 1,
   },
   20: {
-    elemen: 'Bilangan',
+    elemen: 'Undang-Undang Dasar Negara Republik Indonesia Tahun 1945',
     tujuanPembelajaran:
-      'Peserta didik dapat membandingkan dan mengurutkan berbagai bentuk bilangan (desimal, pecahan, dan persen).',
+      'Peserta didik mengidentifikasi kewajiban warga negara untuk mendukung tercapainya hak atas lingkungan bersih.',
     indikatorSoal:
-      'Disajikan kumpulan bilangan yang terdiri atas desimal, pecahan biasa, dan persen, peserta didik dapat mengurutkannya dari yang terkecil hingga terbesar.',
+      'Disajikan hak warga negara atas lingkungan bersih, peserta didik dapat menentukan kewajiban yang mendukung terwujudnya hak tersebut.',
     levelKognitif: 'L2',
     bobotSkor: 1,
   },
   21: {
-    elemen: 'Bilangan',
+    elemen: 'Negara Kesatuan Republik Indonesia',
     tujuanPembelajaran:
-      'Peserta didik dapat menghitung hasil perkalian dua bilangan desimal.',
+      'Peserta didik menganalisis wujud nyata kewajiban bela negara dan cinta tanah air bagi pelajar.',
     indikatorSoal:
-      'Disajikan operasi perkalian dua bilangan desimal satu angka di belakang koma, peserta didik dapat menentukan hasil perhitungannya.',
-    levelKognitif: 'L1',
+      'Disajikan konteks kehidupan pelajar kelas 6 SD, peserta didik dapat memilih bentuk pelaksanaan kewajiban membela negara yang tepat.',
+    levelKognitif: 'L3',
     bobotSkor: 1,
   },
   22: {
-    elemen: 'Bilangan',
+    elemen: 'Undang-Undang Dasar Negara Republik Indonesia Tahun 1945',
     tujuanPembelajaran:
-      'Peserta didik dapat menyelesaikan masalah perkalian bilangan desimal dengan bilangan asli dalam kehidupan sehari-hari.',
+      'Peserta didik mengenal dan melaksanakan kewajiban anak di lingkungan keluarga.',
     indikatorSoal:
-      'Disajikan jumlah bungkus dan berat per bungkus bahan makanan dalam bilangan desimal, peserta didik dapat menentukan total berat belanjaan.',
-    levelKognitif: 'L2',
+      'Peserta didik dapat memilih contoh kewajiban anak di rumah yang harus dilaksanakan sehari-hari.',
+    levelKognitif: 'L1',
     bobotSkor: 1,
   },
   23: {
-    elemen: 'Bilangan',
+    elemen: 'Undang-Undang Dasar Negara Republik Indonesia Tahun 1945',
     tujuanPembelajaran:
-      'Peserta didik dapat menghitung hasil pembagian dua bilangan desimal.',
+      'Peserta didik menumbuhkan kemandirian dalam menjalankan kewajiban belajar sebagai anak.',
     indikatorSoal:
-      'Disajikan operasi pembagian dua bilangan desimal satu angka di belakang koma, peserta didik dapat menentukan hasil baginya.',
-    levelKognitif: 'L2',
+      'Disajikan gambar realistis anak merapikan buku pelajaran di meja belajarnya, peserta didik dapat menentukan wujud kewajiban anak yang tampak.',
+    levelKognitif: 'L1',
     bobotSkor: 1,
   },
   24: {
-    elemen: 'Bilangan',
+    elemen: 'Undang-Undang Dasar Negara Republik Indonesia Tahun 1945',
     tujuanPembelajaran:
-      'Peserta didik dapat menyelesaikan masalah kontekstual pembagian bilangan desimal dua angka di belakang koma.',
+      'Peserta didik memahami keseimbangan hak dan kewajiban anak di fasilitas sekolah.',
     indikatorSoal:
-      'Disajikan volume total air galon dan kapasitas botol kemasan dalam bilangan desimal, peserta didik dapat menentukan banyak botol yang terisi penuh.',
+      'Disajikan hak anak membaca dan meminjam buku perpustakaan, peserta didik dapat menentukan kewajiban yang menyertainya.',
     levelKognitif: 'L2',
     bobotSkor: 1,
   },
   25: {
-    elemen: 'Bilangan',
+    elemen: 'Undang-Undang Dasar Negara Republik Indonesia Tahun 1945',
     tujuanPembelajaran:
-      'Peserta didik dapat menganalisis dan memecahkan masalah multi-langkah yang memadukan perkalian pecahan dan pembagian bilangan desimal.',
+      'Peserta didik mengevaluasi dampak positif pelaksanaan kewajiban anak di sekolah.',
     indikatorSoal:
-      'Disajikan persediaan bahan bakar dalam desimal yang dipakai sebagian (pecahan) lalu sisanya dibagi rata beberapa hari, peserta didik dapat menentukan pemakaian per hari.',
-    levelKognitif: 'L3',
-    bobotSkor: 1,
-  },
-  26: {
-    elemen: 'Bilangan',
-    tujuanPembelajaran:
-      'Peserta didik dapat mengonversi pecahan ke desimal, menjumlahkan desimal, dan menghitung perkalian desimal dalam konteks belanja buah.',
-    indikatorSoal:
-      'Disajikan gambar realitas buah dan timbangan pasar beserta berat belanjaan dalam desimal dan pecahan campuran, peserta didik dapat memilih semua pernyataan yang benar dari 3 opsi.',
+      'Disajikan perilaku siswa yang disiplin waktu dan piket kebersihan, peserta didik dapat menentukan manfaatnya bagi hak belajar bersama.',
     levelKognitif: 'L2',
     bobotSkor: 1,
   },
-  27: {
-    elemen: 'Bilangan',
+  26: {
+    elemen: 'Pancasila',
     tujuanPembelajaran:
-      'Peserta didik dapat mengevaluasi kesetaraan pecahan-desimal serta operasi perkalian dan pembagiannya dalam konteks pembuatan kue.',
+      'Peserta didik memahami hakikat dan tujuan musyawarah untuk mufakat.',
     indikatorSoal:
-      'Disajikan persediaan bahan dalam pecahan campuran dan takaran resep dalam desimal, peserta didik dapat memilih seluruh pernyataan yang benar dari 3 pilihan jawaban.',
-    levelKognitif: 'L3',
+      'Disajikan pengertian musyawarah, peserta didik dapat menentukan tujuan utama dari kegiatan bermusyawarah.',
+    levelKognitif: 'L1',
+    bobotSkor: 1,
+  },
+  27: {
+    elemen: 'Pancasila',
+    tujuanPembelajaran:
+      'Peserta didik bersikap lapang dada dan bertanggung jawab terhadap hasil keputusan musyawarah.',
+    indikatorSoal:
+      'Disajikan kasus usulan siswa yang tidak terpilih dalam musyawarah karya wisata, peserta didik dapat menentukan sikap bijak yang harus ditunjukkan.',
+    levelKognitif: 'L1',
     bobotSkor: 1,
   },
   28: {
-    elemen: 'Bilangan',
+    elemen: 'Pancasila',
     tujuanPembelajaran:
-      'Peserta didik dapat menganalisis permasalahan bertingkat perkalian dan pembagian pecahan pada konteks menjahit kain.',
+      'Peserta didik menerapkan etika menghargai pendapat orang lain saat berdiskusi.',
     indikatorSoal:
-      'Disajikan panjang gulungan kain, bagian pecahan untuk seragam, dan ukuran potongan taplak meja, peserta didik dapat menentukan Benar/Salah pada 3 pernyataan.',
+      'Disajikan situasi teman sedang menyampaikan pendapat di kelas, peserta didik dapat menentukan sikap bermusyawarah yang santun.',
     levelKognitif: 'L2',
     bobotSkor: 1,
   },
   29: {
-    elemen: 'Bilangan',
+    elemen: 'Pancasila',
     tujuanPembelajaran:
-      'Peserta didik dapat mengevaluasi pembagian bilangan desimal dan perkalian pecahan dalam konteks penyiraman tanaman berbasis gambar realitas.',
+      'Peserta didik memahami mekanisme pengambilan keputusan apabila mufakat belum tercapai.',
     indikatorSoal:
-      'Disajikan gambar kebun sekolah dan data volume larutan desimal serta air pecahan untuk 4 pot tanaman, peserta didik dapat menentukan kebenaran (Benar/Salah) 3 pernyataan.',
+      'Disajikan situasi diskusi yang belum menghasilkan kata mufakat, peserta didik dapat menentukan langkah demokratis berikutnya.',
     levelKognitif: 'L2',
     bobotSkor: 1,
   },
   30: {
-    elemen: 'Bilangan',
+    elemen: 'Pancasila',
     tujuanPembelajaran:
-      'Peserta didik dapat menganalisis hasil perkalian dan pembagian antara bilangan pecahan campuran dan bilangan desimal.',
+      'Peserta didik menganalisis peran pemimpin musyawarah dalam mengambil keputusan bagi kepentingan bersama.',
     indikatorSoal:
-      'Disajikan dua bilangan P (pecahan campuran) dan Q (desimal), peserta didik dapat mengevaluasi kebenaran (Benar/Salah) hasil P × Q, P ÷ Q, dan Q ÷ P.',
+      'Disajikan masalah penggunaan uang kas kelas, peserta didik dapat menganalisis tindakan pemimpin musyawarah sesuai sila keempat Pancasila.',
     levelKognitif: 'L3',
+    bobotSkor: 1,
+  },
+  31: {
+    elemen: 'Pancasila',
+    tujuanPembelajaran:
+      'Peserta didik mengidentifikasi beragam contoh pengamalan Pancasila di lingkungan sekolah.',
+    indikatorSoal:
+      'Disajikan tiga perilaku siswa di sekolah, peserta didik dapat memilih semua tindakan yang sesuai pengamalan nilai Pancasila.',
+    levelKognitif: 'L2',
+    bobotSkor: 1,
+  },
+  32: {
+    elemen: 'Pancasila',
+    tujuanPembelajaran:
+      'Peserta didik mengevaluasi cara mengajak teman mengamalkan Pancasila secara ramah dan teladan.',
+    indikatorSoal:
+      'Disajikan tiga pernyataan cara mengajak teman berbuat baik di sekolah, peserta didik dapat memilih seluruh pernyataan yang benar.',
+    levelKognitif: 'L2',
+    bobotSkor: 1,
+  },
+  33: {
+    elemen: 'Undang-Undang Dasar Negara Republik Indonesia Tahun 1945',
+    tujuanPembelajaran:
+      'Peserta didik menghubungkan macam-macam norma dengan contoh penerapannya dalam kehidupan sehari-hari.',
+    indikatorSoal:
+      'Disajikan tiga pasangan jenis norma dan contoh perilaku, peserta didik dapat memilih semua pasangan yang tepat.',
+    levelKognitif: 'L2',
+    bobotSkor: 1,
+  },
+  34: {
+    elemen: 'Undang-Undang Dasar Negara Republik Indonesia Tahun 1945',
+    tujuanPembelajaran:
+      'Peserta didik membedakan antara kewajiban anak dan hak anak di rumah maupun sekolah.',
+    indikatorSoal:
+      'Disajikan tiga pernyataan aktivitas anak, peserta didik dapat memilih semua pernyataan yang termasuk kewajiban anak.',
+    levelKognitif: 'L1',
+    bobotSkor: 1,
+  },
+  35: {
+    elemen: 'Pancasila',
+    tujuanPembelajaran:
+      'Peserta didik menganalisis prinsip-prinsip musyawarah demokratis berdasarkan stimulus gambar.',
+    indikatorSoal:
+      'Disajikan gambar realistis musyawarah kelas dan tiga pernyataan terkait etika diskusi, peserta didik dapat memilih semua pernyataan yang benar.',
+    levelKognitif: 'L3',
+    bobotSkor: 1,
+  },
+  36: {
+    elemen: 'Pancasila',
+    tujuanPembelajaran:
+      'Peserta didik mengevaluasi keterkaitan antarsila Pancasila dalam kerukunan hidup di sekolah.',
+    indikatorSoal:
+      'Disajikan studi kasus keberagaman siswa di kelas dan 3 pernyataan, peserta didik dapat menilai Benar atau Salah pada masing-masing pernyataan.',
+    levelKognitif: 'L2',
+    bobotSkor: 1,
+  },
+  37: {
+    elemen: 'Pancasila',
+    tujuanPembelajaran:
+      'Peserta didik menilai makna pengamalan Pancasila sebagai pandangan hidup bangsa melalui kegiatan gotong royong.',
+    indikatorSoal:
+      'Disajikan narasi kerja bakti lingkungan sekolah dan 3 pernyataan, peserta didik dapat menentukan kebenaran (Benar/Salah) tiap pernyataan.',
+    levelKognitif: 'L2',
+    bobotSkor: 1,
+  },
+  38: {
+    elemen: 'Undang-Undang Dasar Negara Republik Indonesia Tahun 1945',
+    tujuanPembelajaran:
+      'Peserta didik menganalisis sumber, sanksi norma, dan kesadaran melaksanakan kewajiban berbangsa dan bernegara.',
+    indikatorSoal:
+      'Disajikan 3 pernyataan mengenai norma agama, sanksi norma kesopanan, dan pelaksanaan hak-kewajiban, peserta didik dapat menentukan Benar/Salah.',
+    levelKognitif: 'L3',
+    bobotSkor: 1,
+  },
+  39: {
+    elemen: 'Undang-Undang Dasar Negara Republik Indonesia Tahun 1945',
+    tujuanPembelajaran:
+      'Peserta didik mengevaluasi pelaksanaan kewajiban dan hak anak dalam kehidupan keluarga.',
+    indikatorSoal:
+      'Disajikan cerita keseharian anak di rumah dan 3 pernyataan terkait kewajiban serta hak bermain, peserta didik dapat menentukan Benar/Salah.',
+    levelKognitif: 'L1',
+    bobotSkor: 1,
+  },
+  40: {
+    elemen: 'Pancasila',
+    tujuanPembelajaran:
+      'Peserta didik menilai sikap demokratis dan tanggung jawab terhadap hasil keputusan musyawarah kelas.',
+    indikatorSoal:
+      'Disajikan narasi musyawarah persiapan lomba kebersihan kelas dan 3 pernyataan, peserta didik dapat menentukan Benar/Salah tiap pernyataan.',
+    levelKognitif: 'L2',
     bobotSkor: 1,
   },
 };
@@ -350,7 +439,6 @@ export function formatCorrectAnswer(q: Question): string {
 export function getQuestionBlueprint(q: Question, index: number): QuestionBlueprint {
   const def = DEFAULT_BLUEPRINT_MAP[q.id];
 
-  // Gunakan data dari definisi atau field internal question, atau inferensi logis
   const elemen =
     q.elemen ||
     (def ? def.elemen : inferElemenFromTopic(q.topic));
@@ -363,7 +451,7 @@ export function getQuestionBlueprint(q: Question, index: number): QuestionBluepr
     q.tujuanPembelajaran ||
     (def
       ? def.tujuanPembelajaran
-      : `Peserta didik mampu menerapkan konsep materi ${q.topic} dalam menyelesaikan permasalahan matematika.`);
+      : `Peserta didik mampu menerapkan konsep materi ${q.topic} dalam menyelesaikan permasalahan Pendidikan Pancasila.`);
 
   const indikatorSoal =
     q.indikatorSoal ||
@@ -391,22 +479,16 @@ export function getQuestionBlueprint(q: Question, index: number): QuestionBluepr
 
 function inferElemenFromTopic(topic: string): string {
   const t = topic.toLowerCase();
-  if (t.includes('bilangan') || t.includes('pecahan') || t.includes('desimal') || t.includes('fpb') || t.includes('kpk') || t.includes('pangkat')) {
-    return 'Bilangan';
+  if (t.includes('norma') || t.includes('hak') || t.includes('kewajiban')) {
+    return 'Undang-Undang Dasar Negara Republik Indonesia Tahun 1945';
   }
-  if (t.includes('lingkaran') || t.includes('bangun datar') || t.includes('kubus') || t.includes('geometri') || t.includes('layang')) {
-    return 'Geometri';
+  if (t.includes('bhinneka') || t.includes('keberagaman') || t.includes('suku')) {
+    return 'Bhinneka Tunggal Ika';
   }
-  if (t.includes('debit') || t.includes('volume') || t.includes('kecepatan') || t.includes('jarak')) {
-    return 'Pengukuran';
+  if (t.includes('gotong royong') || t.includes('nkri') || t.includes('negara')) {
+    return 'Negara Kesatuan Republik Indonesia';
   }
-  if (t.includes('skala') || t.includes('perbandingan') || t.includes('diskon') || t.includes('bruto') || t.includes('aritmatika')) {
-    return 'Aljabar';
-  }
-  if (t.includes('statistika') || t.includes('diagram') || t.includes('mean') || t.includes('modus') || t.includes('median')) {
-    return 'Analisis Data dan Peluang';
-  }
-  return 'Bilangan';
+  return 'Pancasila';
 }
 
 function inferLevelFromDifficulty(diff: Difficulty): CognitiveLevel {
@@ -422,21 +504,14 @@ export function getBlueprintStatistics(questions: Question[]) {
   const total = questions.length;
   const blueprints = questions.map((q, idx) => getQuestionBlueprint(q, idx));
 
-  // Distribusi Elemen
   const elemenCountMap: Record<string, number> = {};
-  // Distribusi Level Kognitif
   const levelCountMap: Record<CognitiveLevel, number> = { L1: 0, L2: 0, L3: 0 };
-  // Distribusi Tingkat Kesukaran
   const diffCountMap: Record<Difficulty, number> = { Mudah: 0, Sedang: 0, Sukar: 0 };
-  // Distribusi Bentuk Soal
   const typeCountMap: Record<string, number> = { pg: 0, pgk: 0, pgk_kategori: 0 };
 
   blueprints.forEach((bp, idx) => {
-    // Elemen
     elemenCountMap[bp.elemen] = (elemenCountMap[bp.elemen] || 0) + 1;
-    // Level
     levelCountMap[bp.levelKognitif] = (levelCountMap[bp.levelKognitif] || 0) + 1;
-    // Diff
     const q = questions[idx];
     if (q) {
       diffCountMap[q.difficulty] = (diffCountMap[q.difficulty] || 0) + 1;

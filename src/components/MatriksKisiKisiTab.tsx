@@ -154,7 +154,7 @@ export const MatriksKisiKisiTab: React.FC<MatriksKisiKisiTabProps> = ({ question
             </div>
           </div>
           <span className="text-[11px] text-slate-400 mt-3 pt-2 border-t border-slate-100 block">
-            Capaian Pembelajaran Matematika Fase C
+            Capaian Pembelajaran Pendidikan Pancasila Fase C
           </span>
         </div>
 

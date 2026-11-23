@@ -1,5 +1,5 @@
 import { jsPDF } from 'jspdf';
-import { CONFIG } from '../config';
+import { CONFIG, getKKTPPredicate } from '../config';
 import { ExamResult, Question } from '../types';
 import { getQuestionBlueprint, getBlueprintStatistics, formatCorrectAnswer } from '../data/blueprintData';
 import { computeItemAnalysis } from './itemAnalysisHelper';
@@ -137,7 +137,7 @@ export function downloadStudentResultPDF(result: ExamResult): void {
   y += 8;
 
   // Baris-baris tabel
-  const totalQuestionsCount = (result.benar || 0) + (result.salah || 0) > 0 ? (result.benar || 0) + (result.salah || 0) : 30;
+  const totalQuestionsCount = (result.benar || 0) + (result.salah || 0) > 0 ? (result.benar || 0) + (result.salah || 0) : 40;
   const integrityStatus = result.submissionReason === 'violation_limit'
     ? 'Dihentikan Otomatis (3x Pelanggaran Pindah Tab)'
     : result.violationsCount && result.violationsCount > 0
@@ -178,14 +178,15 @@ export function downloadStudentResultPDF(result: ExamResult): void {
   y += 10;
 
   // Status Baris
+  const pred = getKKTPPredicate(result.nilai);
   doc.setFillColor(241, 245, 249);
   doc.rect(15, y, pageWidth - 30, 9, 'F');
   doc.rect(15, y, pageWidth - 30, 9, 'S');
   doc.setFontSize(10);
-  doc.text('Keterangan Kelulusan', 20, y + 6);
+  doc.text('Predikat & Status KKTP', 20, y + 6);
   doc.setFontSize(10);
   doc.setTextColor(isPass ? 22 : 185, isPass ? 101 : 28, isPass ? 52 : 28);
-  doc.text(isPass ? 'LULUS (Mencapai KKTP)' : 'BELUM LULUS (Perlu Remedial)', pageWidth - 45, y + 6, {
+  doc.text(`${pred.label.toUpperCase()} (${pred.range}) — ${isPass ? 'TUNTAS KKTP' : 'PERLU BIMBINGAN'}`, pageWidth - 45, y + 6, {
     align: 'right',
   });
   doc.setTextColor(0, 0, 0);
@@ -199,8 +200,8 @@ export function downloadStudentResultPDF(result: ExamResult): void {
   doc.setFont('helvetica', 'italic');
   doc.setFontSize(9);
   const note = isPass
-    ? 'Selamat atas pencapaian yang memuaskan. Tingkatkan terus semangat belajar dan ketelitian dalam menyelesaikan soal matematika.'
-    : 'Perlu bimbingan dan pengulangan materi terutama pada konsep soal kompleks dan pemecahan masalah (remedial). Tetap semangat belajar.';
+    ? 'Selamat atas pencapaian yang baik. Terus amalkan nilai-nilai Pancasila, norma, kewajiban anak, dan sikap bermusyawarah dalam kehidupan sehari-hari.'
+    : 'Perlu bimbingan dan pendalaman kembali mengenai nilai-nilai Pancasila, norma, hak dan kewajiban, serta musyawarah. Tetap semangat belajar.';
   doc.text(note, 15, y, { maxWidth: pageWidth - 30 });
   y += 16;
 
@@ -270,7 +271,7 @@ export function downloadExamQuestionsPDF(questions: Question[]): void {
     doc.setFontSize(8);
     doc.setTextColor(120, 120, 120);
     doc.text(
-      `${CONFIG.SEKOLAH} | Naskah Soal Tes Sumatif Matematika Kelas ${CONFIG.KELAS}`,
+      `${CONFIG.SEKOLAH} | Naskah Soal Tes Sumatif Pendidikan Pancasila Kelas ${CONFIG.KELAS}`,
       pageWidth / 2,
       9,
       { align: 'center' }
@@ -384,7 +385,7 @@ export function downloadExamQuestionsPDF(questions: Question[]): void {
     }
   });
 
-  doc.save(`Naskah_Soal_Matematika_Kelas_${CONFIG.KELAS}_${CONFIG.SEKOLAH.replace(/[^a-zA-Z0-9]/g, '_')}.pdf`);
+  doc.save(`Naskah_Soal_Pendidikan_Pancasila_Kelas_${CONFIG.KELAS}_${CONFIG.SEKOLAH.replace(/[^a-zA-Z0-9]/g, '_')}.pdf`);
 }
 
 /**
@@ -709,7 +710,7 @@ export function downloadResultsRecapPDF(results: ExamResult[]): void {
     });
   }
 
-  doc.save(`Rekap_Nilai_Tes_Sumatif_Matematika_Kelas_${CONFIG.KELAS}.pdf`);
+  doc.save(`Rekap_Nilai_Tes_Sumatif_Pendidikan_Pancasila_Kelas_${CONFIG.KELAS}.pdf`);
 }
 
 /**
@@ -965,7 +966,7 @@ export function downloadKisiKisiPDF(questions: Question[]): void {
     });
   }
 
-  doc.save(`Kisi_Kisi_Soal_Matematika_Kelas_${CONFIG.KELAS}.pdf`);
+  doc.save(`Kisi_Kisi_Soal_Pendidikan_Pancasila_Kelas_${CONFIG.KELAS}.pdf`);
 }
 
 /**
@@ -1288,6 +1289,6 @@ export function downloadAnalisisButirPDF(results: ExamResult[], questions: Quest
     });
   }
 
-  doc.save(`Analisis_Butir_Soal_Matematika_Kelas_${CONFIG.KELAS}.pdf`);
+  doc.save(`Analisis_Butir_Soal_Pendidikan_Pancasila_Kelas_${CONFIG.KELAS}.pdf`);
 }
 

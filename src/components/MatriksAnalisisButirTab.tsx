@@ -125,7 +125,7 @@ export const MatriksAnalisisButirTab: React.FC<MatriksAnalisisButirTabProps> = (
               Analisis Butir Soal per Siswa
             </h2>
             <p className="text-xs sm:text-sm text-blue-100 max-w-2xl leading-relaxed">
-              Matriks pemetaan skor jawaban siswa butir per butir (S1 s.d. S30) dengan visualisasi
+              Matriks pemetaan skor jawaban siswa butir per butir (S1 s.d. S{questions.length}) dengan visualisasi
               status jawaban, ketercapaian daya serap empiris, serta diagnosis kelemahan materi tiap
               siswa.
             </p>
@@ -327,7 +327,7 @@ export const MatriksAnalisisButirTab: React.FC<MatriksAnalisisButirTabProps> = (
                   Nama Siswa
                 </th>
 
-                {/* Kolom Butir Soal S1 s.d. S30 */}
+                {/* Kolom Butir Soal S1 s.d. S40 */}
                 {questions.map((q, idx) => {
                   const qNum = idx + 1;
                   return (
@@ -337,7 +337,7 @@ export const MatriksAnalisisButirTab: React.FC<MatriksAnalisisButirTabProps> = (
                         setHoveredQuestion({
                           qNum,
                           topic: q.topic,
-                          elemen: itemStats[idx]?.elemen || 'Matematika',
+                          elemen: itemStats[idx]?.elemen || CONFIG.MATA_PELAJARAN,
                           kunci: itemStats[idx]?.kunciJawaban || '-',
                         })
                       }
@@ -405,7 +405,7 @@ export const MatriksAnalisisButirTab: React.FC<MatriksAnalisisButirTabProps> = (
                         </span>
                       </td>
 
-                      {/* Matriks Skor Butir Soal S1 .. S30 */}
+                      {/* Matriks Skor Butir Soal S1 .. S40 */}
                       {questions.map((q) => {
                         const resp = studentResponses[q.id];
                         const isBenar = resp && resp.status === 'benar';

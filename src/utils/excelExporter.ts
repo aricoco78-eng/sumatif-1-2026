@@ -1,5 +1,5 @@
 import * as XLSX from 'xlsx';
-import { CONFIG } from '../config';
+import { CONFIG, getKKTPPredicate } from '../config';
 import {
   ExamResult,
   Question,
@@ -142,6 +142,7 @@ function buildRekapNilaiSheet(results: ExamResult[]): XLSX.WorkSheet {
     'Benar',
     'Salah',
     'Nilai',
+    'Predikat KKTP',
     'Status KKTP',
     'Durasi Pengerjaan',
     'Jumlah Pelanggaran',
@@ -151,6 +152,7 @@ function buildRekapNilaiSheet(results: ExamResult[]): XLSX.WorkSheet {
 
   const rows: CellValue[][] = results.map((r, idx) => {
     const isLulus = r.status === 'Lulus' || (r.nilai ?? 0) >= CONFIG.KKTP;
+    const predikat = getKKTPPredicate(Number(r.nilai ?? 0));
     const { statusSubmit, catatan } = getIntegrityFields(r);
 
     return [
@@ -164,7 +166,8 @@ function buildRekapNilaiSheet(results: ExamResult[]): XLSX.WorkSheet {
       Number(r.benar ?? 0),
       Number(r.salah ?? 0),
       Number(r.nilai ?? 0),
-      isLulus ? 'Tuntas' : 'Remedial',
+      predikat.label,
+      isLulus ? 'Tuntas' : 'Perlu Bimbingan',
       r.durasiPengerjaan || '-',
       Number(r.violationsCount ?? 0),
       statusSubmit,
@@ -207,20 +210,19 @@ function buildRingkasanStatistikSheet(results: ExamResult[]): XLSX.WorkSheet {
   ).length;
 
   const sangatBaikCount = results.filter((r) => (r.nilai ?? 0) >= 90).length;
-  const baikTuntasCount = results.filter(
-    (r) => (r.nilai ?? 0) >= CONFIG.KKTP && (r.nilai ?? 0) < 90
-  ).length;
-  const perluRemedialCount = results.filter((r) => (r.nilai ?? 0) < CONFIG.KKTP).length;
+  const baikCount = results.filter((r) => (r.nilai ?? 0) >= 79 && (r.nilai ?? 0) < 90).length;
+  const cukupCount = results.filter((r) => (r.nilai ?? 0) >= 69 && (r.nilai ?? 0) < 79).length;
+  const perluBimbinganCount = results.filter((r) => (r.nilai ?? 0) < 69).length;
 
   const aoa: CellValue[][] = [
     ['Indikator Statistik', 'Nilai', 'Keterangan'],
     ['Sekolah', CONFIG.SEKOLAH, CONFIG.ALAMAT_SEKOLAH],
     ['Mata Pelajaran Utama', CONFIG.MATA_PELAJARAN, `Materi: ${CONFIG.MATERI}`],
-    ['Kelas & KKTP Acuan', CONFIG.KELAS, `KKTP Minimal: ${CONFIG.KKTP}`],
+    ['Kelas & KKTP Acuan', CONFIG.KELAS, CONFIG.KKTP_SCALE_TEXT],
     ['Total Peserta Ujian', total, 'Seluruh data siswa terekam'],
-    ['Jumlah Tuntas (Lulus KKTP)', lulusCount, `${persenLulus}% dari total peserta`],
-    ['Jumlah Remedial (Belum Tuntas)', remedialCount, `${persenRemedial}% dari total peserta`],
-    ['Rata-Rata Nilai Kelas', avgNilai, `Batas KKTP: ${CONFIG.KKTP}`],
+    ['Jumlah Tuntas (Nilai ≥ 69)', lulusCount, `${persenLulus}% dari total peserta`],
+    ['Jumlah Perlu Bimbingan (0 - 68)', remedialCount, `${persenRemedial}% dari total peserta`],
+    ['Rata-Rata Nilai Kelas', avgNilai, `Batas Minimal Cukup: ${CONFIG.KKTP}`],
     [
       'Nilai Tertinggi',
       highestStudent ? Number(highestStudent.nilai ?? 0) : 0,
@@ -231,9 +233,10 @@ function buildRingkasanStatistikSheet(results: ExamResult[]): XLSX.WorkSheet {
       lowestStudent ? Number(lowestStudent.nilai ?? 0) : 0,
       lowestStudent ? `Diraih oleh: ${lowestStudent.nama} (Absen ${lowestStudent.noAbsen})` : '-',
     ],
-    ['Distribusi Nilai 90 - 100 (Sangat Baik)', sangatBaikCount, 'Kategori Pengayaan'],
-    [`Distribusi Nilai ${CONFIG.KKTP} - 89 (Tuntas)`, baikTuntasCount, 'Memenuhi KKTP'],
-    [`Distribusi Nilai < ${CONFIG.KKTP} (Remedial)`, perluRemedialCount, 'Perlu Tindak Lanjut'],
+    ['Distribusi Nilai 90 - 100 (Sangat Baik)', sangatBaikCount, 'Kategori Sangat Baik (Tuntas)'],
+    ['Distribusi Nilai 79 - 89 (Baik)', baikCount, 'Kategori Baik (Tuntas)'],
+    ['Distribusi Nilai 69 - 78 (Cukup)', cukupCount, 'Kategori Cukup (Tuntas)'],
+    ['Distribusi Nilai 0 - 68 (Perlu Bimbingan)', perluBimbinganCount, 'Perlu Bimbingan / Tindak Lanjut'],
     ['Total Kejadian Pindah Tab (Pelanggaran)', totalViolations, 'Akumulasi log keamanan siswa'],
     [
       'Siswa Auto-Submit (Batas Pelanggaran 3x)',

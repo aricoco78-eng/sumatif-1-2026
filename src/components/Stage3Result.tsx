@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import confetti from 'canvas-confetti';
-import { CONFIG } from '../config';
+import { CONFIG, getKKTPPredicate } from '../config';
 import { ExamResult, Question } from '../types';
 import { downloadStudentResultPDF } from '../utils/pdfGenerator';
 import {
@@ -137,7 +137,7 @@ export const Stage3Result: React.FC<Stage3ResultProps> = ({
         ) : null}
 
         {/* Kotak Nilai Utama */}
-        <div className="my-6 max-w-sm mx-auto p-6 rounded-2xl bg-slate-50 border border-slate-200">
+        <div className="my-6 max-w-md mx-auto p-6 rounded-2xl bg-slate-50 border border-slate-200">
           <p className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">
             Nilai Akhir Ujian
           </p>
@@ -148,22 +148,34 @@ export const Stage3Result: React.FC<Stage3ResultProps> = ({
           >
             {result.nilai}
           </div>
-          <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-extrabold uppercase tracking-wide mt-1">
-            {isPassed ? (
-              <span className="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full flex items-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4" />
-                LULUS (Mencapai KKTP)
-              </span>
-            ) : (
-              <span className="bg-amber-100 text-amber-800 px-3 py-1 rounded-full flex items-center gap-1.5">
-                <AlertTriangle className="w-4 h-4" />
-                BELUM LULUS (Perlu Remedial)
-              </span>
-            )}
-          </div>
-          <p className="text-[11px] text-slate-500 mt-2">
-            Standar Kriteria Ketercapaian Tujuan Pembelajaran (KKTP): <span className="font-bold">{CONFIG.KKTP}</span>
-          </p>
+          {(() => {
+            const predikat = getKKTPPredicate(result.nilai);
+            return (
+              <div className="space-y-2 mt-1">
+                <div className="inline-flex flex-wrap items-center justify-center gap-2">
+                  {isPassed ? (
+                    <span className="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-xs font-extrabold uppercase tracking-wide flex items-center gap-1.5">
+                      <CheckCircle2 className="w-4 h-4" />
+                      TUNTAS (Mencapai KKTP)
+                    </span>
+                  ) : (
+                    <span className="bg-amber-100 text-amber-800 px-3 py-1 rounded-full text-xs font-extrabold uppercase tracking-wide flex items-center gap-1.5">
+                      <AlertTriangle className="w-4 h-4" />
+                      PERLU BIMBINGAN
+                    </span>
+                  )}
+                  <span
+                    className={`px-3 py-1 rounded-full text-xs font-extrabold border ${predikat.badgeClass}`}
+                  >
+                    Predikat: {predikat.label} ({predikat.range})
+                  </span>
+                </div>
+                <p className="text-[11px] text-slate-500 leading-relaxed pt-1">
+                  Kriteria KKTP: <span className="font-semibold text-slate-700">{CONFIG.KKTP_SCALE_TEXT}</span>
+                </p>
+              </div>
+            );
+          })()}
         </div>
 
         {/* Rincian Identitas Siswa & Statistik Jawaban */}

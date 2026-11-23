@@ -1,7 +1,7 @@
 /**
  * Aplikasi Website Tes Sumatif
- * SEKOLAH DASAR - JEMBRANA - KELAS VI
- * Mata Pelajaran: MATEMATIKA (TKA)
+ * SD N 1 DANGINTUKADAYA - JEMBRANA - KELAS 6
+ * Mata Pelajaran: PENDIDIKAN PANCASILA
  */
 
 import React, { useState, useEffect } from 'react';
@@ -15,7 +15,7 @@ import { Stage3Result } from './components/Stage3Result';
 import { Stage4TeacherPanel } from './components/Stage4TeacherPanel';
 import { TeacherAuthModal } from './components/TeacherAuthModal';
 
-const STORAGE_QUESTIONS_KEY = 'sdn1_dangintukadaya_questions_pecahan_v3';
+const STORAGE_QUESTIONS_KEY = 'sdn1_dangintukadaya_questions_pancasila_v4';
 const STORAGE_ALLOW_REVIEW_KEY = 'sd3_loloan_timur_allow_review';
 const STORAGE_STRICT_SECURITY_KEY = 'sd3_strict_exam_mode';
 
@@ -36,13 +36,13 @@ export default function App() {
       const saved = localStorage.getItem(STORAGE_QUESTIONS_KEY);
       if (saved) {
         const parsed = JSON.parse(saved);
-        // Pastikan jumlah dan struktur sesuai dengan distribusi soal terbaru (30 soal: 25 PG, 2 PGK, 3 PGK Kategori)
+        // Pastikan jumlah dan struktur sesuai dengan distribusi soal terbaru (40 soal: 30 PG, 5 PGK, 5 PGK Kategori)
         if (
           Array.isArray(parsed) &&
           parsed.length === INITIAL_QUESTIONS.length &&
-          parsed.filter((q: Question) => q.type === 'pg').length === 25 &&
-          parsed.filter((q: Question) => q.type === 'pgk').length === 2 &&
-          parsed.filter((q: Question) => q.type === 'pgk_kategori').length === 3
+          parsed.filter((q: Question) => q.type === 'pg').length === 30 &&
+          parsed.filter((q: Question) => q.type === 'pgk').length === 5 &&
+          parsed.filter((q: Question) => q.type === 'pgk_kategori').length === 5
         ) {
           return parsed;
         }
@@ -93,7 +93,7 @@ export default function App() {
     });
   };
 
-  // Reset soal ke 30 butir standar (25 PG, 2 PGK, 3 PGK Kategori)
+  // Reset soal ke 40 butir standar (30 PG, 5 PGK, 5 PGK Kategori)
   const handleResetDefaultQuestions = () => {
     setQuestions(INITIAL_QUESTIONS);
     try {
@@ -231,7 +231,7 @@ export default function App() {
             Web Developer-susilo fitri yatmoko
           </p>
           <p>
-            Mata Pelajaran: {CONFIG.MATA_PELAJARAN} (Materi: {CONFIG.MATERI}) | Kelas {CONFIG.KELAS} | KKTP: {CONFIG.KKTP}
+            Mata Pelajaran: {CONFIG.MATA_PELAJARAN} | Kelas {CONFIG.KELAS} | KKTP: {CONFIG.KKTP_SCALE_TEXT}
           </p>
         </div>
       </footer>
